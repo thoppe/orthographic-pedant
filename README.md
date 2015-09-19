@@ -3,6 +3,15 @@ _correcting the spelling on github projects_
 
 Work in progress...
 
+# TO DO:
+
++ Write a search script that pulls top 1000 README's with a given typo
++ Save this data to a database that is git friendly
++ Write a browser to review each typo
++ Submit issue and pull request for each typo
++ Keep track of what has been sent out
+
+
 #### Notes:
 
 [Search](https://github.com/search?utf8=%E2%9C%93&q=fork%3Afalse+in%3Afile+abudance+filename%3Areadme&type=Code&ref=searchresults) query for `abudance`, no forks and filename `README`:

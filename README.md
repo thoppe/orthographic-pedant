@@ -1,5 +1,8 @@
 # orthographic-pedant
-![](images/hipster.jpg) _a repository that feels superior to you_
+<p align="center">
+  <img src="https://raw.githubusercontent.com/thoppe/orthographic-pedant/master/images/hipster.jpg?raw=true" alt=""/>
+_a repository that feels superior to you_
+</p>
   
 # TO DO:
 

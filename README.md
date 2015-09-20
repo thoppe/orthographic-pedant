@@ -1,7 +1,6 @@
 # orthographic-pedant
 _correcting the spelling on github projects_
 
-Work in progress...
 
 # TO DO:
 
@@ -13,6 +12,7 @@ Work in progress...
 
 
 #### Notes:
+  
 
 [Search](https://github.com/search?utf8=%E2%9C%93&q=fork%3Afalse+in%3Afile+abudance+filename%3Areadme&type=Code&ref=searchresults) query for `abudance`, no forks and filename `README`:
 

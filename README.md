@@ -1,7 +1,6 @@
 # orthographic-pedant
-_correcting the spelling on github projects_
-
-
+![](images/hipster.jpg) _a repository that feels superior to you_
+  
 # TO DO:
 
 + Write a search script that pulls top 1000 README's with a given typo
@@ -9,6 +8,10 @@ _correcting the spelling on github projects_
 + Write a browser to review each typo
 + Submit issue and pull request for each typo
 + Keep track of what has been sent out
+
+#### Credit:
+
+Hipster image credit: [Christopher Michel](https://flic.kr/p/fn9wCy)
 
 
 #### Notes:

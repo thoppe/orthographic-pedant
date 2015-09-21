@@ -1,4 +1,12 @@
+import os
+
+# Verify that there is a token set as an env variable
+shell_token  = "GITHUB_ORTHOGRAPHIC_TOKEN"
+GITHUB_TOKEN = os.environ[shell_token]
+
 import requests, os, json, codecs, time
+
+# github's search API
 url = "https://api.github.com/search/repositories"
 
 WORDS = []
@@ -18,6 +26,7 @@ for word in WORDS:
         "sort":"stars",
         "order":"desc",
         "per_page":100,
+        "access_token":GITHUB_TOKEN,
     }
     payload_str = "&".join("%s=%s" % (k,v) for k,v in params.items())
     r = requests.get(url,params=payload_str)

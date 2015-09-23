@@ -23,7 +23,7 @@ for word in WORDS:
         continue
 
     params = {
-        "q" : word+'+in:readme+stars:>1',
+        "q" : word+'+in:readme+stars:>1+file:',
         "sort":"stars",
         "order":"desc",
         "per_page":100,
@@ -50,6 +50,8 @@ for word in WORDS:
 
         now_time = datetime.utcnow()
         delta_seconds = (reset_time - now_time).total_seconds()
+
+        if delta_seconds < 0: break
 
         print "Sleeping {:0.3f} seconds for API limit.".format(delta_seconds)
         time.sleep(delta_seconds)

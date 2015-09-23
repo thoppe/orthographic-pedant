@@ -1,8 +1,6 @@
-# orthographic-pedant
-<p align="center">
-  <img src="https://raw.githubusercontent.com/thoppe/orthographic-pedant/master/images/hipster.jpg?raw=true" alt=""/>
-</p>
-_a repository that feels superior to you by correcting your mistakes_
+# orthographic pedant
+<p align="center"><img src="https://raw.githubusercontent.com/thoppe/orthographic-pedant/master/images/hipster.jpg?raw=true" alt=""/></p>
+_the repository that feels superior to you by correcting your mistakes_
   
 # TO DO:
 
@@ -16,9 +14,7 @@ _a repository that feels superior to you by correcting your mistakes_
 
 Hipster image credit: [Christopher Michel](https://flic.kr/p/fn9wCy)
 
-
 #### Notes:
-  
 
 [Search](https://github.com/search?utf8=%E2%9C%93&q=fork%3Afalse+in%3Afile+abudance+filename%3Areadme&type=Code&ref=searchresults) query for `abudance`, no forks and filename `README`:
 

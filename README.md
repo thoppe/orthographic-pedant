@@ -1,6 +1,8 @@
+<p align="center">
 # orthographic pedant
-<p align="center"><img src="https://raw.githubusercontent.com/thoppe/orthographic-pedant/master/images/hipster.jpg?raw=true" alt=""/></p>
+<img src="https://raw.githubusercontent.com/thoppe/orthographic-pedant/master/images/hipster.jpg?raw=true" alt=""/>
 _A repository that feels superior to you by correcting your mistakes._
+</p>
   
 # TO DO:
 

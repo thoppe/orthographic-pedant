@@ -49,7 +49,7 @@ for word in WORDS:
 
 
         now_time = datetime.utcnow()
-        delta_seconds = (reset_time - now_time).total_seconds()
+        delta_seconds = (reset_time - now_time).total_seconds() + 2
 
         if delta_seconds < 0: break
 

@@ -1,16 +1,24 @@
-import os, json, logging, glob, codecs
-logging.basicConfig(level=logging.INFO)
+import os, json, logging, glob, codecs, os, time, subprocess
 from contextlib import contextmanager
+import requests
+logging.basicConfig(level=logging.INFO)
 
-
-# TO DO
-# Create proper fork
-# POST /repos/:owner/:repo/forks
 ## TO DO:
-## push...
-## MARK PUSHED
-## remove
+## CREATE PULL REQUEST!
+## DELETE FORK
+## LOG AS COMPLETE!
 
+# Verify that there is a token set as an env variable and load it
+shell_token  = "GITHUB_ORTHOGRAPHIC_TOKEN"
+GITHUB_TOKEN = os.environ[shell_token]
+login_params = {"access_token":GITHUB_TOKEN,}
+
+
+API_URL    = "https://api.github.com/repos"
+fork_url   = API_URL + "/{user_name}/{repo_name}/forks"
+pulls_url = API_URL + "/{user_name}/{repo_name}/pulls"
+delete_url = API_URL + "/{user_name}/{repo_name}"
+clone_url  = "https://github.com/orthographic-pedant/{repo_name}"
 
 # Target word
 bad_word  = "Celcius"
@@ -29,37 +37,49 @@ repo = js["items"][0]
 full_name = repo["full_name"]
 '''
 
+def set_local_permission():
+    # Set the local username
+    cmd = 'git config user.name "orthographic-pendant"'
+    os.system(cmd)
+
+    # Set the password
+    cmd = 'git config url."https://orthographic-pendant:{access_token}@github.com".insteadOf "https://github.com"'
+    os.system(cmd.format(**repo))
+
+
 
 @contextmanager
-def enter_repo(full_name):
+def enter_repo(repo):
 
     # Remember our original directory
     org_dir = os.getcwd()
 
-    # Set the local username
-    cmd = 'git config user.name "orthographic-pendant"'
-    os.system(cmd)
-    os.system('git config user.name')
+    f_url = fork_url.format(**repo)
 
-    user_name,repo_name = full_name.split('/')
+    # Create the fork!
+    #r = requests.post(f_url,params=login_params)
+    #logging.info("Creating fork, status {}".format(r))
+    #logging.info("Sleeping for 10")
+    #time.sleep(10)
 
     # Create the directories
     os.system("mkdir -p forks")
     os.chdir("forks")
 
-    os.system("mkdir -p {}".format(user_name))
-    os.chdir(user_name)
+    repo["full_name"] = "{user_name}:{repo_name}".format(**repo)
 
-    cmd = "git clone {clone_url}".format(**repo)
-    if not os.path.exists(repo_name):
-        print "Cloning repo", full_name
+    cmd = "git clone " + clone_url.format(**repo)
+    if not os.path.exists(repo["repo_name"]):
+        msg = "Cloning repo {full_name}".format(**repo)
+        logging.info(msg)
         os.system(cmd)
 
-    os.chdir(repo_name)
-    
-    logging.info("Entered {}".format(full_name))
+    os.chdir(repo["repo_name"])
+    logging.info("Entered {}".format(repo["full_name"]))
+
     yield
-    logging.info("Exiting {}".format(full_name))
+    
+    logging.info("Exiting {}".format(repo["full_name"]))
     os.chdir(org_dir)   
     
 
@@ -85,36 +105,67 @@ def fix_file(f, w1, w2):
 
 #full_name = "orthographic-pedant/I-am-error"
 full_name = "thoppe/I-am-error"
-repo = {"clone_url": "https://orthographic-pendant@github.com/" + full_name}
+repo = {
+    "user_name": "thoppe",
+    "repo_name": "I-am-error",
+    "access_token":GITHUB_TOKEN,
+}
         
-with enter_repo(full_name):
+with enter_repo(repo):
 
     # Find READMES
     F_README = [x for x in glob.glob("*.*")
                 if 'readme.' in x.lower()]
 
+    # Get the current branch name
+    p = subprocess.check_output("git show-branch",shell=True)
+    repo["master_branch"] = p.split(']')[0][3:]
+
     # Create a new branch
-    branch = "spell_check/{}".format(good_word)
-    cmd = "git checkout -b {}".format(branch)
+    repo["branch_name"] = "spell_check/{}".format(good_word)
+    cmd = "git checkout -b {branch_name}".format(**repo)
     os.system(cmd)
-
-    # Create upstream
-    cmd = "git remote add upstream {clone_url}".format(**repo)
-    print cmd
-    exit()
-    #cmd = "git remote add upstream https://github.com/omeka/Omeka.git"
-    #spell_check/{}".format(good_word)
-
+    
     # Fix READMES
     for fr in F_README:
         fix_file(fr, bad_word, good_word)
 
     # Commit changes
     msg = 'Fixed typographical error, changed {} to {} in README.'
-    cmd = 'git commit -a -m "{}"'.format(msg.format(bad_word, good_word))
+    msg = msg.format(bad_word, good_word)
+    cmd = 'git commit -a -m "{}"'.format(msg)
     os.system(cmd)
 
-    # Push?
-    cmd = "git push origin {}".format(branch)
+    # Push the changes to bot directory
+    set_local_permission()
+    logging.info("Pushing to new branch")
+    cmd = "git push origin {branch_name}".format(**repo)
     os.system(cmd)
+
+    # Create pull request
+    data = {
+        "head"  :"orthographic-pendant:{branch_name}".format(**repo),
+        "base"  : repo["master_branch"],
+        "title" : msg,
+        "body"  : '''
+        {user_name}, I've corrected a typo in the documentation of the 
+        {repo_name} project. If this was intentional or you enjoy living in 
+        linguistic squalor please let me know and create an issue on
+        https://github.com/thoppe/orthographic-pedant.        
+        '''.strip().format(**repo)
+    }
+    data["body"] = "base"
+    print json.dumps(data,indent=2)
+
+    f_url = pulls_url.format(**repo)
+    print f_url
+    r = requests.post(f_url,data=data)
+    print r
+    print r.content
+    exit()
+    #logging.info("Creating fork, status {}".format(r))
+    #logging.info("Sleeping for 10")
+    #time.sleep(10)
+
+    print "HI!"
 

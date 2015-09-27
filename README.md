@@ -1,6 +1,6 @@
 # orthographic pedant
-<p align="center"><img src="https://raw.githubusercontent.com/thoppe/orthographic-pedant/master/images/hipster.jpg?raw=true" alt=""/></p>
 _A repository that feels superior to you by correcting your mistakes._
+<p align="center"><img src="https://raw.githubusercontent.com/thoppe/orthographic-pedant/master/images/hipster.jpg?raw=true" alt=""/></p>
 
 The heart of this project is a user of the same name on github, [orthographic-pedant](https://github.com/orthographic-pedant).
 This user scans popular repositories for common typos and will attempt to correct them with proper pull requests.
@@ -16,7 +16,9 @@ To catch any other spell-checker bots on Github, the following repository is a h
   
 [https://github.com/orthographic-pedant/honeypot](https://github.com/orthographic-pedant/honeypot)
   
-There is already one such bot in action, albeit it hasn't been formally released and it's scope may differ: [@TheTypoMaster](https://github.com/TheTypoMaster).  
+It is known that there is at least one such bot in action:
+
++ [@TheTypoMaster](https://github.com/TheTypoMaster).  
 
 #### Notes:
 

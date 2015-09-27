@@ -1,15 +1,22 @@
 # orthographic pedant
 <p align="center"><img src="https://raw.githubusercontent.com/thoppe/orthographic-pedant/master/images/hipster.jpg?raw=true" alt=""/></p>
 _A repository that feels superior to you by correcting your mistakes._
+
+The heart of this project is a user of the same name on github, [orthographic-pedant](https://github.com/orthographic-pedant).
+This user scans popular repositories for common typos and will attempt to correct them with proper pull requests.
   
 # TO DO:
 
 + Keep track of what has been sent out
 + Start correcting everyone!
 
-#### Credit:
+### The Honeypot and related work
 
-Hipster image credit: [Christopher Michel](https://flic.kr/p/fn9wCy)
+To catch any other spell-checker bots on Github, the following repository is a honeypot:
+  
+[https://github.com/orthographic-pedant/honeypot](https://github.com/orthographic-pedant/honeypot)
+  
+There is already one such bot in action, albeit it hasn't been formally released and it's scope may differ: [@TheTypoMaster](https://github.com/TheTypoMaster).  
 
 #### Notes:
 
@@ -21,13 +28,9 @@ Wikipedia's list of common misspellings:
 
 [https://en.wikipedia.org/wiki/Wikipedia:Lists_of_common_misspellings/For_machines](https://en.wikipedia.org/wiki/Wikipedia:Lists_of_common_misspellings/For_machines)
 
-### Honeypot and Related Work
+#### Image Credit:
 
-To catch any other spell-checker bots on Github, the following repository is a honeypot:
-  
-[https://github.com/orthographic-pedant/honeypot](https://github.com/orthographic-pedant/honeypot)
-  
-There is already one such bot in action, albeit it hasn't been formally released and it's scope may differ: [@TheTypoMaster](https://github.com/TheTypoMaster).  
+Hipster image credit: [Christopher Michel](https://flic.kr/p/fn9wCy)
 
 
 

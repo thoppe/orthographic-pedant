@@ -2,31 +2,30 @@ import os, json, logging, glob, codecs, os, time, subprocess
 from contextlib import contextmanager
 import requests
 logging.basicConfig(level=logging.INFO)
+logging.getLogger("requests").setLevel(logging.WARNING)
 
-#GIT_EXEC = "hub/hub"
 ## TO DO:
-## CREATE PULL REQUEST!
-## DELETE FORK
 ## LOG AS COMPLETE!
+
+# Target word
+bad_word  = "Celcius"
+good_word = "Celsius"
+
+FLAG_fork = True
+FLAG_delete = True
 
 # Verify that there is a token set as an env variable and load it
 shell_token  = "GITHUB_ORTHOGRAPHIC_TOKEN"
 GITHUB_TOKEN = os.environ[shell_token]
 login_params = {"access_token":GITHUB_TOKEN,}
 
-
 API_URL    = "https://api.github.com/repos"
 fork_url   = API_URL + "/{user_name}/{repo_name}/forks"
 pulls_url  = API_URL + "/{user_name}/{repo_name}/pulls"
 delete_url = API_URL + "/{user_name}/{repo_name}"
 push_url   = "https://{bot_name}:{bot_password}@github.com/{bot_name}/{repo_name} {branch_name}:{branch_name}"
-
 clone_url  = "https://github.com/orthographic-pedant/{repo_name}"
 
-
-# Target word
-bad_word  = "Celcius"
-good_word = "Celsius"
 
 '''
 def load_word_file(f):
@@ -41,42 +40,47 @@ repo = js["items"][0]
 full_name = repo["full_name"]
 '''
 
-def set_local_permission():
-    # Set the local username
-    cmd = 'git config user.name "orthographic-pendant"'
-    os.system(cmd)
-
-    # Set the password
-    cmd = 'git config url."https://orthographic-pendant:{access_token}@github.com".insteadOf "https://github.com"'
-    os.system(cmd.format(**repo))
-
 pull_request_msg = ' '.join('''
-  {user_name}, I've corrected a typo in the documentation of the 
-  {repo_name} project. If this was intentional or you enjoy living in 
-  linguistic squalor please let me know and create an issue on
-  https://github.com/thoppe/orthographic-pedant.
+  {user_name}, I've corrected a typographical error in the documentation of the 
+  [{repo_name}](https://github.com/{user_name}/{repo_name})
+  project. You should be able to merge this pull request automatically. 
+  However, if this was intentional or you enjoy living in 
+  linguistic squalor please let me know and 
+  [create an issue](https://github.com/thoppe/orthographic-pedant/issues/new)
+  on my home repository.
 '''.split())
 
+def is_branch_different_from_default(repo):
+    # Checks if any substantial commits have been made
+    cmd = "git diff {master_branch}".format(**repo)
+    p = subprocess.check_output(cmd,shell=True).strip()
+
+    # If any edits have been made this will return True
+    return p
+
+
 def pull_request_repo(repo):
+
+    if not is_branch_different_from_default(repo):
+        logging.info("No edits have been made, skipping!".format(**repo))
+        return
+
+    logging.info("Creating pull request for {full_name}".format(**repo))
+
     data = {
-        "head"  :"orthographic-pendant:{branch_name}".format(**repo),
+        "head"  :"{bot_name}:{branch_name}".format(**repo),
         "base"  : repo["master_branch"],
-        "title" : msg,
+        "title" : repo["fix_msg"],
         "body"  : pull_request_msg.format(**repo),
     }
 
-    print json.dumps(data,indent=2)
     url = pulls_url.format(**repo)
-    exit()
-
-    r = requests.post(f_url,
-                      params=login_params,
-                      json=data)
-    print r
-    print r.content
-
-
-    pass
+    r = requests.post(url,params=login_params,json=data)
+    if "errors" in r.json():
+        from pprint import pprint
+        print pprint(r.json()["errors"])
+        
+    logging.info("Pull request status {}".format(r))
 
 
 def fork_repo(repo):
@@ -91,7 +95,7 @@ def fork_repo(repo):
 
 def push_commits(repo):
     logging.info("Push new branch {bot_name}:{branch_name}".format(**repo))
-    cmd = "git push " + push_url.format(**repo)
+    cmd = "git push -u " + push_url.format(**repo)
     os.system(cmd)  
 
 def clone_repo(repo):
@@ -115,11 +119,13 @@ def does_git_branch_exist(repo):
     # Valid SHA1 hash will be forty characters long
     return len(p.strip()) == 40
 
+
 def create_branch(repo):
     # Attempts to create the branch in repo["branch_name"]  
 
     if not does_git_branch_exist(repo):
         logging.info("Creating new branch {branch_name}".format(**repo))
+
         cmd = "git checkout -b {branch_name}".format(**repo)
         os.system(cmd)
 
@@ -132,19 +138,19 @@ def delete_bot_repo(repo):
 @contextmanager
 def enter_repo(repo):
 
+    # Remember our original directory
+    org_dir = os.getcwd()
+
     repo["bot_name"] = "orthographic-pedant"
     repo["bot_password"] = GITHUB_TOKEN
 
     # Record the full name of the repo
     repo["full_name"] = "{user_name}:{repo_name}".format(**repo)
 
-    #delete_bot_repo(repo)
-
-    # Remember our original directory
-    org_dir = os.getcwd()
-
-    # Create the fork!
-    #fork_repo(repo)
+    logging.info("Entered {}".format(repo["full_name"]))
+    
+    if FLAG_fork:
+        fork_repo(repo)
 
     # Create the directories
     os.system("mkdir -p forks")
@@ -154,7 +160,7 @@ def enter_repo(repo):
 
     # Enter the repo directory
     os.chdir(repo["repo_name"])
-    logging.info("Entered {}".format(repo["full_name"]))
+
 
     # Get the current branch name
     p = subprocess.check_output("git show-branch",shell=True)
@@ -163,7 +169,12 @@ def enter_repo(repo):
     yield
     
     logging.info("Exiting {}".format(repo["full_name"]))
-    os.chdir(org_dir)   
+
+    if FLAG_delete:
+        delete_bot_repo(repo)
+    
+    os.chdir(org_dir)
+    #os.system("rm -rf forks")
     
 
 def fix_word(line,w1,w2):
@@ -214,9 +225,9 @@ with enter_repo(repo):
     logging.info("Fixed {} spelling mistakes".format(total_corrections))
 
     # Commit changes
-    msg = 'Fixed typographical error, changed {} to {} in README.'
-    msg = msg.format(bad_word, good_word)
-    cmd = 'git commit -a -m "{}"'.format(msg)
+    repo["fix_msg"] = 'Fixed typographical error, changed {} to {} in README.'
+    repo["fix_msg"] = repo["fix_msg"].format(bad_word, good_word)
+    cmd = 'git commit -a -m "{fix_msg}"'.format(**repo)
     os.system(cmd)
 
     # Push the changes to bot directory
@@ -224,10 +235,4 @@ with enter_repo(repo):
 
     # Create pull request
     pull_request_repo(repo)
-    exit()
-    #logging.info("Creating fork, status {}".format(r))
-    #logging.info("Sleeping for 10")
-    #time.sleep(10)
-
-    print "HI!"
 

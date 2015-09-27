@@ -7,10 +7,6 @@ logging.getLogger("requests").setLevel(logging.WARNING)
 ## TO DO:
 ## LOG AS COMPLETE!
 
-# Target word
-bad_word  = "Celcius"
-good_word = "Celsius"
-
 FLAG_fork = True
 FLAG_delete = True
 
@@ -26,19 +22,6 @@ delete_url = API_URL + "/{user_name}/{repo_name}"
 push_url   = "https://{bot_name}:{bot_password}@github.com/{bot_name}/{repo_name} {branch_name}:{branch_name}"
 clone_url  = "https://github.com/orthographic-pedant/{repo_name}"
 
-
-'''
-def load_word_file(f):
-    with open(f) as FIN:
-        js = json.loads(FIN.read())
-    return js
-
-f_wordfile = os.path.join("search_data",bad_word)
-js = load_word_file(f_wordfile)
-print len(js["items"])
-repo = js["items"][0]
-full_name = repo["full_name"]
-'''
 
 pull_request_msg = ' '.join('''
   {user_name}, I've corrected a typographical error in the documentation of the 
@@ -133,7 +116,29 @@ def delete_bot_repo(repo):
     url = API_URL + "/{bot_name}/{repo_name}".format(**repo)
     r = requests.delete(url,params=login_params)
     msg = "Deleted bot repo {repo_name}, status {}"
-    logging.info(msg.format(r.status_code,**repo))
+    logging.info(msg.format(r.status_code,**repo))  
+
+def fix_word(line,w1,w2):
+    line = line.replace(w1.title(),w2.title())
+    line = line.replace(w1,w2)
+    line = line.replace(w1.lower(),w2.lower())
+    return line
+
+def fix_file(f, w1, w2):
+    corrections = 0
+    newlines = []
+    with codecs.open(f,'r','utf-8') as FIN:
+        for line in FIN:
+            while w1.lower() in line.lower():
+                logging.info("Fixing {} in {}".format(w1,f)) 
+                line = fix_word(line,w1,w2)
+                corrections += 1
+            newlines.append(line)
+            
+    with codecs.open(f,'w','utf-8') as FOUT:
+        FOUT.write(''.join(newlines))
+    return corrections
+
 
 @contextmanager
 def enter_repo(repo):
@@ -174,65 +179,53 @@ def enter_repo(repo):
         delete_bot_repo(repo)
     
     os.chdir(org_dir)
-    #os.system("rm -rf forks")
+    os.system("rm -rf forks")
+
+def fix_repo(repo, good_word, bad_word):
     
+    with enter_repo(repo):
 
-def fix_word(line,w1,w2):
-    line = line.replace(w1.title(),w2.title())
-    line = line.replace(w1,w2)
-    line = line.replace(w1.lower(),w2.lower())
-    return line
+        # Find READMES
+        F_README = [x for x in glob.glob("*.*")
+                    if 'readme.' in x.lower()]
 
-def fix_file(f, w1, w2):
-    corrections = 0
-    newlines = []
-    with codecs.open(f,'r','utf-8') as FIN:
-        for line in FIN:
-            while w1.lower() in line.lower():
-                logging.info("Fixing {} in {}".format(w1,f)) 
-                line = fix_word(line,w1,w2)
-                corrections += 1
-            newlines.append(line)
-            
-    with codecs.open(f,'w','utf-8') as FOUT:
-        FOUT.write(''.join(newlines))
-    return corrections
-                
+        repo["branch_name"] = "spell_check/{}".format(good_word)
+
+        create_branch(repo)
+
+        # Fix READMES
+        total_corrections = 0
+        for fr in F_README:
+            total_corrections += fix_file(fr, bad_word, good_word)
+        logging.info("Fixed {} spelling mistakes".format(total_corrections))
+
+        # Commit changes
+        repo["fix_msg"] = 'Fixed typographical error, changed {} to {} in README.'
+        repo["fix_msg"] = repo["fix_msg"].format(bad_word, good_word)
+        cmd = 'git commit -a -m "{fix_msg}"'.format(**repo)
+        os.system(cmd)
+
+        # Push the changes to bot directory
+        push_commits(repo)
+
+        # Create pull request
+        pull_request_repo(repo)
 
 
-#full_name = "orthographic-pedant/I-am-error"
-full_name = "thoppe/I-am-error"
-repo = {
-    "user_name": "thoppe",
-    "repo_name": "I-am-error",
-    "access_token":GITHUB_TOKEN,
-}
+###############################################################
+
+
+if __name__ == "__main__":
+
+    # Target word
+    bad_word  = "Celcius"
+    good_word = "Celsius"
+
+    repo = {
+        "user_name": "thoppe",
+        "repo_name": "I-am-error",
+        "access_token":GITHUB_TOKEN,
+    }
+
+    fix_repo(repo, good_word, bad_word)
         
-with enter_repo(repo):
-
-    # Find READMES
-    F_README = [x for x in glob.glob("*.*")
-                if 'readme.' in x.lower()]
-
-    repo["branch_name"] = "spell_check/{}".format(good_word)
-
-    create_branch(repo)
-    
-    # Fix READMES
-    total_corrections = 0
-    for fr in F_README:
-        total_corrections += fix_file(fr, bad_word, good_word)
-    logging.info("Fixed {} spelling mistakes".format(total_corrections))
-
-    # Commit changes
-    repo["fix_msg"] = 'Fixed typographical error, changed {} to {} in README.'
-    repo["fix_msg"] = repo["fix_msg"].format(bad_word, good_word)
-    cmd = 'git commit -a -m "{fix_msg}"'.format(**repo)
-    os.system(cmd)
-
-    # Push the changes to bot directory
-    push_commits(repo)
-
-    # Create pull request
-    pull_request_repo(repo)
-

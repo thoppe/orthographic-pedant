@@ -4,11 +4,8 @@ _A repository that feels superior to you by correcting your mistakes._
   
 # TO DO:
 
-+ Write a search script that pulls top 1000 README's with a given typo
-+ Save this data to a database that is git friendly
-+ Write a browser to review each typo
-+ Submit issue and pull request for each typo
 + Keep track of what has been sent out
++ Start correcting everyone!
 
 #### Credit:
 

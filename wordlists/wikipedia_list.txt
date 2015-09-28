@@ -732,7 +732,6 @@ catterpillar->caterpillar
 catterpillars->caterpillars
 cattleship->battleship
 causalities->casualties
-Ceasar->Caesar
 Celcius->Celsius
 cellpading->cellpadding
 cementary->cemetery

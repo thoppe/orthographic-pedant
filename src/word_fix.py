@@ -197,6 +197,10 @@ def fix_repo(full_name, good_word, bad_word):
         "user_name" : user_name,
         "repo_name" : repo_name,
     }
+
+    # Check if the user_name is a "bad_word", this is a false positive!
+    if bad_word in user_name:
+        return False
     
     with enter_repo(repo):
 

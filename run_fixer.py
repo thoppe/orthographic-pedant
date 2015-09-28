@@ -1,4 +1,5 @@
-
+import os, glob
+from src.word_fix import fix_word
 
 '''
 def load_word_file(f):

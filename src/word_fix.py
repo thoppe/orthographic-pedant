@@ -4,9 +4,6 @@ import requests
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("requests").setLevel(logging.WARNING)
 
-## TO DO:
-## LOG AS COMPLETE!
-
 FLAG_fork = True
 FLAG_delete = True
 

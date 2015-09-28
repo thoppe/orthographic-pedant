@@ -4,13 +4,12 @@ _A repository that feels superior to you by correcting your mistakes._
 
 The heart of this project is a user of the same name on github, [orthographic-pedant](https://github.com/orthographic-pedant).
 This user scans popular repositories for common typos and will attempt to correct them with proper pull requests.
-  
-# TO DO:
 
-+ Keep track of what has been sent out
-+ Start correcting everyone!
+#### Submitted logs
 
-### The Honeypot and related work
+[List of submitted corrections](logs/submitted.log)
+
+#### The Honeypot and related work
 
 To catch any other spell-checker bots on Github, the following repository is a honeypot:
   

@@ -7,6 +7,8 @@ logging.getLogger("requests").setLevel(logging.WARNING)
 FLAG_fork = True
 FLAG_delete = True
 
+fork_sleep_time = 8
+
 # Verify that there is a token set as an env variable and load it
 shell_token  = "GITHUB_ORTHOGRAPHIC_TOKEN"
 GITHUB_TOKEN = os.environ[shell_token]
@@ -70,8 +72,8 @@ def fork_repo(repo):
     logging.info("Creating fork, status {}".format(status))
     
     assert(status == 202)
-    logging.info("Sleeping for 10")
-    time.sleep(10)
+    logging.info("Sleeping for {}".format(fork_sleep_time))
+    time.sleep(fork_sleep_time)
 
 def push_commits(repo):
     logging.info("Push new branch {bot_name}:{branch_name}".format(**repo))
@@ -145,6 +147,7 @@ def enter_repo(repo):
 
     repo["bot_name"] = "orthographic-pedant"
     repo["bot_password"] = GITHUB_TOKEN
+    repo["bot_email"] = "https://github.com/thoppe/orthographic-pedant/issues/new"
 
     # Record the full name of the repo
     repo["full_name"] = "{user_name}:{repo_name}".format(**repo)
@@ -163,10 +166,15 @@ def enter_repo(repo):
     # Enter the repo directory
     os.chdir(repo["repo_name"])
 
-
     # Get the current branch name
     p = subprocess.check_output("git show-branch",shell=True)
     repo["master_branch"] = p.split(']')[0].split('[')[1]
+
+    # Set the username
+    cmd = 'git config user.name "{bot_name}"'.format(**repo)
+    os.system(cmd)
+    cmd = 'git config user.email "{bot_email}"'.format(**repo)
+    os.system(cmd)
 
     yield
     
@@ -178,7 +186,16 @@ def enter_repo(repo):
     os.chdir(org_dir)
     os.system("rm -rf forks")
 
-def fix_repo(repo, good_word, bad_word):
+def fix_repo(full_name, good_word, bad_word):
+
+    full_name = full_name.strip()
+    user_name, repo_name = full_name.split('/')
+
+    repo = {
+        "access_token" : GITHUB_TOKEN,
+        "user_name" : user_name,
+        "repo_name" : repo_name,
+    }
     
     with enter_repo(repo):
 
@@ -217,12 +234,7 @@ if __name__ == "__main__":
     # Target word
     bad_word  = "Celcius"
     good_word = "Celsius"
+    full_name = "thoppe/I-am-error"
 
-    repo = {
-        "user_name": "thoppe",
-        "repo_name": "I-am-error",
-        "access_token":GITHUB_TOKEN,
-    }
-
-    fix_repo(repo, good_word, bad_word)
+    fix_repo(full_name, good_word, bad_word)
         

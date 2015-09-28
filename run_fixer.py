@@ -1,6 +1,9 @@
 import os, glob, json, codecs, time
 from src.word_fix import fix_repo
 
+# Total number of corrections to run in one batch
+max_total_corrections = 20
+
 os.system("mkdir -p logs")
 F_SEARCH = sorted(glob.glob("search_data/*"))
 
@@ -25,16 +28,20 @@ with open("wordlists/wikipedia_list.txt") as FIN:
         bad, good = line.strip().split('->')
 
         # Skip words with multiple mappings
-        if ',' in bad: continue
+        if ',' in good: continue
         corrections[bad] = good
-
 
 def load_word_file(f):
     with codecs.open(f,'r','utf-8') as FIN:
         js = json.loads(FIN.read())
     return js
 
+total_corrections = 0
+
 for f in F_SEARCH:
+    if total_corrections > max_total_corrections:
+        break
+    
     js = load_word_file(f)
     count = js["total_count"]
     word = f.split('/')[-1]
@@ -72,6 +79,8 @@ for f in F_SEARCH:
         log_item = "{} {} {}\n"
         F_LOG.write(log_item.format(word, full_name, int(time.time())))
 
-    exit()
+        total_corrections += 1
+
+
 
 F_LOG.close()

@@ -670,7 +670,6 @@ cannotation->connotation
 cannotations->connotations
 caost->coast
 caperbility->capability
-Capetown->Cape Town
 capible->capable
 captial->capital
 captued->captured

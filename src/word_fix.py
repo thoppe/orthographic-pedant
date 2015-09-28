@@ -72,7 +72,7 @@ def fork_repo(repo):
     logging.info("Creating fork, status {}".format(status))
     
     assert(status == 202)
-    logging.info("Sleeping for {}".format(fork_sleep_time))
+    logging.info("Sleeping for {} seconds.".format(fork_sleep_time))
     time.sleep(fork_sleep_time)
 
 def push_commits(repo):

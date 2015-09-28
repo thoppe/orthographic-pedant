@@ -199,7 +199,7 @@ def fix_repo(full_name, good_word, bad_word):
     }
 
     # Check if the user_name is a "bad_word", this is a false positive!
-    if bad_word in user_name:
+    if bad_word.lower() in user_name.lower():
         return False
     
     with enter_repo(repo):

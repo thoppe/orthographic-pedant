@@ -34,7 +34,8 @@ pull_request_msg = ' '.join('''
 
 def is_branch_different_from_default(repo):
     # Checks if any substantial commits have been made
-    cmd = "git diff {master_branch}".format(**repo)
+    cmd = "git diff {master_branch} --".format(**repo)
+    
     p = subprocess.check_output(cmd,shell=True).strip()
 
     # If any edits have been made this will return True

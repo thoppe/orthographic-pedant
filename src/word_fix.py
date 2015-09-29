@@ -85,7 +85,7 @@ def push_commits(repo):
 def clone_repo(repo):
     
     git_endpoint = clone_url.format(**repo)
-    cmd = "git clone -q " + git_endpoint
+    cmd = "git clone -q --single-branch --depth 1 " + git_endpoint
 
     if not os.path.exists(repo["repo_name"]):
         try:

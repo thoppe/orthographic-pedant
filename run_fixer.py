@@ -2,14 +2,21 @@ import os, glob, json, codecs, time
 from src.word_fix import fix_repo
 
 # ONLY correct these words
-filter_words = ["diablical","emblamatic","excecuting",
+filter_words = ["diablical","emblamatic",
                 "existance","indepedence","incomptetent",
-                "auxilary", "auxilliary"
-                ]
+                "auxilary", "auxilliary",
+                'availabe',
+                'availablity',
+                'availaible',
+                'availble',
+                'availiable',
+                'availible',
+                'avalable',
+]
 
 # Total number of corrections to run in one batch
-#max_total_corrections = 20**10
-max_total_corrections = 1
+max_total_corrections = 20**10
+#max_total_corrections = 1
 
 os.system("mkdir -p logs")
 F_SEARCH = sorted(glob.glob("search_data/*"))
@@ -60,7 +67,7 @@ for f in F_SEARCH:
     if not count: continue
 
     if count > 500:
-        print "BIG WORD COUNT...", f, count
+        #print "BIG WORD COUNT...", f, count
         continue
 
     if word not in corrections:

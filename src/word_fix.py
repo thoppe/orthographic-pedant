@@ -7,7 +7,8 @@ logging.getLogger("requests").setLevel(logging.WARNING)
 FLAG_fork = True
 FLAG_delete = True
 
-fork_sleep_time = 8
+fork_sleep_time = 10
+clone_error_sleep_time = 15
 
 # Verify that there is a token set as an env variable and load it
 shell_token  = "GITHUB_ORTHOGRAPHIC_TOKEN"
@@ -87,9 +88,16 @@ def clone_repo(repo):
     cmd = "git clone -q " + git_endpoint
 
     if not os.path.exists(repo["repo_name"]):
-        msg = "Cloning repo {full_name}".format(**repo)
-        logging.info(msg)
-        os.system(cmd)
+        try:
+            msg = "Cloning repo {full_name}".format(**repo)
+            logging.info(msg)
+            os.system(cmd)
+        except:
+            msg = "Cloning repo {full_name} again".format(**repo)
+            time.sleep(60)
+            logging.info(msg)
+            os.system(cmd)
+            
 
 def does_git_branch_exist(repo):
     # Checks if a branch already exists of a given name

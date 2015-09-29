@@ -12,11 +12,15 @@ This bot is in it's infancy. You can guide it's development by sending it scathi
 
 [List of submitted corrections](logs/submitted.log)
 
-#### User reviews:
+#### User reviews and mentions:
 
 >  Your bot is a d-bag. [@peanav](https://github.com/peanav/LESS-Presentation/pull/1)
 
 > As much as I enjoy the view from linguistic squalor, I feel obliged to visit pedantry avenue occasionally. [@reggieb](https://github.com/reggieb/indulgence/pull/2)
+
+> @orthographic-pedant thx little bot :) [@theengineear](https://github.com/plotly/postMessage-API/pull/2)
+
+> Loving this bot, @orthographic-pedant! [@pudo](https://github.com/pudo/apikit/pull/1#issuecomment-143965254)
 
 #### The Honeypot and related work
 

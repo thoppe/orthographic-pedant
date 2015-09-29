@@ -148,7 +148,9 @@ def enter_repo(repo):
 
     repo["bot_name"] = "orthographic-pedant"
     repo["bot_password"] = GITHUB_TOKEN
-    repo["bot_email"] = "https://github.com/thoppe/orthographic-pedant/issues/new"
+
+    # Used so github can track the submissions...
+    repo["bot_email"] = "travis.hoppe"+"+orthographicpendant"+"@"+"gmail.com"
 
     # Record the full name of the repo
     repo["full_name"] = "{user_name}:{repo_name}".format(**repo)

@@ -122,6 +122,7 @@ def fix_word(line,w1,w2):
     line = line.replace(w1.title(),w2.title())
     line = line.replace(w1,w2)
     line = line.replace(w1.lower(),w2.lower())
+    line = line.replace(w1.upper(),w2.upper())
     return line
 
 def fix_file(f, w1, w2):
@@ -129,10 +130,11 @@ def fix_file(f, w1, w2):
     newlines = []
     with codecs.open(f,'r','utf-8') as FIN:
         for line in FIN:
-            while w1.lower() in line.lower():
-                logging.info("Fixing {} in {}".format(w1,f)) 
-                line = fix_word(line,w1,w2)
-                corrections += 1
+            
+            logging.info("Fixing {}->{} in {}".format(w1,w2,f)) 
+            line = fix_word(line,w1,w2)
+            corrections += 1
+            
             newlines.append(line)
             
     with codecs.open(f,'w','utf-8') as FOUT:

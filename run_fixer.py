@@ -1,8 +1,15 @@
 import os, glob, json, codecs, time
 from src.word_fix import fix_repo
 
+# ONLY correct these words
+filter_words = ["diablical","emblamatic","excecuting",
+                "existance","indepedence","incomptetent",
+                "auxilary", "auxilliary"
+                ]
+
 # Total number of corrections to run in one batch
-max_total_corrections = 20
+#max_total_corrections = 20**10
+max_total_corrections = 1
 
 os.system("mkdir -p logs")
 F_SEARCH = sorted(glob.glob("search_data/*"))
@@ -29,7 +36,11 @@ with open("wordlists/wikipedia_list.txt") as FIN:
 
         # Skip words with multiple mappings
         if ',' in good: continue
+
+        # Skip words that aren't in clean list
+        if bad not in filter_words: continue
         corrections[bad] = good
+
 
 def load_word_file(f):
     with codecs.open(f,'r','utf-8') as FIN:
@@ -53,7 +64,7 @@ for f in F_SEARCH:
         continue
 
     if word not in corrections:
-        print "Word {} not in corrections, skipping".format(word)
+        #print "Word {} not in corrections, skipping".format(word)
         continue
             
     

@@ -1,6 +1,6 @@
 # Orthographic Pedant
 _A repository that tries to feel superior by correcting your mistakes._
-_A repository that is often culturally insensitive and rude._
+_I've been culturally insensitive and rude._
   
 <p align="center"><img src="https://raw.githubusercontent.com/thoppe/orthographic-pedant/master/images/hipster.jpg?raw=true" alt=""/></p>
 
@@ -11,6 +11,12 @@ This bot is in it's infancy. You can guide it's development by sending it scathi
 #### Submitted logs
 
 [List of submitted corrections](logs/submitted.log)
+
+#### User reviews:
+
+>  Your bot is a d-bag. [@peanav](https://github.com/peanav/LESS-Presentation/pull/1)
+
+> As much as I enjoy the view from linguistic squalor, I feel obliged to visit pedantry avenue occasionally. [@reggieb](https://github.com/reggieb/indulgence/pull/2)
 
 #### The Honeypot and related work
 

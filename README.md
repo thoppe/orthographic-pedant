@@ -1,9 +1,12 @@
-# orthographic pedant
-_A repository that feels superior to you by correcting your mistakes._
+# Orthographic Pedant
+_A repository that tries to feel superior by correcting your mistakes._
+_A repository that is often culturally insensitive and rude._
+  
 <p align="center"><img src="https://raw.githubusercontent.com/thoppe/orthographic-pedant/master/images/hipster.jpg?raw=true" alt=""/></p>
 
 The heart of this project is a user of the same name on github, [orthographic-pedant](https://github.com/orthographic-pedant).
 This user scans popular repositories for common typos and will attempt to correct them with proper pull requests.
+This bot is in it's infancy. You can guide it's development by sending it scathing ditiribes as an [issue](https://github.com/thoppe/orthographic-pedant/issues/new).
 
 #### Submitted logs
 

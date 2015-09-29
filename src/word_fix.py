@@ -131,10 +131,11 @@ def fix_file(f, w1, w2):
     with codecs.open(f,'r','utf-8') as FIN:
         for line in FIN:
             
-            logging.info("Fixing {}->{} in {}".format(w1,w2,f)) 
-            line = fix_word(line,w1,w2)
-            corrections += 1
-            
+            if w1.lower() in line.lower():
+                logging.info("Fixing {}->{} in {}".format(w1,w2,f)) 
+                line = fix_word(line,w1,w2)
+                corrections += 1
+                
             newlines.append(line)
             
     with codecs.open(f,'w','utf-8') as FOUT:

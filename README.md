@@ -18,6 +18,8 @@ This bot is in it's infancy. You can guide it's development by sending it scathi
 
 > As much as I enjoy the view from linguistic squalor, I feel obliged to visit pedantry avenue occasionally. [@reggieb](https://github.com/reggieb/indulgence/pull/2)
 
+> You, sir, are a gentleman and a scholar. [@RichardLitt](https://github.com/k88hudson/git-flight-rules/pull/91#issuecomment-144483181)
+
 > @orthographic-pedant thx little bot :) [@theengineear](https://github.com/plotly/postMessage-API/pull/2)
 
 > Loving this bot, @orthographic-pedant! [@pudo](https://github.com/pudo/apikit/pull/1#issuecomment-143965254)

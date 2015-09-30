@@ -24,11 +24,11 @@ clone_url  = "https://github.com/orthographic-pedant/{repo_name}"
 
 
 pull_request_msg = ' '.join('''
-  {user_name}, I've corrected a typographical error in the documentation of the 
+  @{user_name}, I've corrected a typographical error in the documentation of the 
   [{repo_name}](https://github.com/{user_name}/{repo_name})
   project. You should be able to merge this pull request automatically. 
-  However, if this was intentional or you enjoy living in 
-  linguistic squalor please let me know and 
+  However, if this was intentional or if you enjoy living in 
+  linguistic squalor, please let me know and 
   [create an issue](https://github.com/thoppe/orthographic-pedant/issues/new)
   on my home repository.
 '''.split())

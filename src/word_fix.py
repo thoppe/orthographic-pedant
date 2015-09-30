@@ -90,15 +90,15 @@ def clone_repo(repo):
 
     if not os.path.exists(repo["repo_name"]):
         try:
-            msg = "Cloning repo {full_name}".format(**repo)
+            msg = u"Cloning repo {full_name}".format(**repo)
             logging.info(msg)
-            os.system(cmd)
+            subprocess.check_output(cmd,shell=True)
         except:
-            msg = "Cloning repo {full_name} again".format(**repo)
-            time.sleep(60)
+            msg = u"Cloning repo {full_name} again".format(**repo)
             logging.info(msg)
+            time.sleep(60)
+            subprocess.check_output(cmd,shell=True)
             os.system(cmd)
-            
 
 def does_git_branch_exist(repo):
     # Checks if a branch already exists of a given name
@@ -233,7 +233,12 @@ def fix_repo(full_name, good_word, bad_word):
         # Fix READMES
         total_corrections = 0
         for fr in F_README:
-            total_corrections += fix_file(fr, bad_word, good_word)
+            try:
+                correction_count = fix_file(fr, bad_word, good_word)
+            except UnicodeDecodeError:
+                # Skip the repo if the file is too funky for utf-8
+                return False
+            total_corrections += correction_count
         logging.info("Fixed {} spelling mistakes".format(total_corrections))
 
         # Commit changes

@@ -1,5 +1,3 @@
-abandonned->abandoned
-abilties->abilities
 abilty->ability
 abbout->about
 abondoned->abandoned

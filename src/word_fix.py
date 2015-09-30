@@ -47,7 +47,7 @@ def pull_request_repo(repo):
 
     if not is_branch_different_from_default(repo):
         logging.info("No edits have been made, skipping!".format(**repo))
-        return
+        return False
 
     logging.info("Creating pull request for {full_name}".format(**repo))
 
@@ -65,6 +65,7 @@ def pull_request_repo(repo):
         print pprint(r.json()["errors"])
         
     logging.info("Pull request status {}".format(r))
+    return True
 
 
 def fork_repo(repo):
@@ -245,8 +246,9 @@ def fix_repo(full_name, good_word, bad_word):
         push_commits(repo)
 
         # Create pull request
-        pull_request_repo(repo)
+        pull_status = pull_request_repo(repo)
 
+    return pull_status
 
 ###############################################################
 

@@ -4,6 +4,10 @@ import os
 shell_token  = "GITHUB_ORTHOGRAPHIC_TOKEN"
 GITHUB_TOKEN = os.environ[shell_token]
 
+# Use the parsed version
+#f_wordlist = "wordlists/wikipedia_list.txt"
+f_wordlist = "wordlists/parsed_wikipedia_list.txt"
+
 import requests, os, json, codecs, time, pprint
 from datetime import datetime
 
@@ -11,7 +15,7 @@ from datetime import datetime
 url = "https://api.github.com/search/repositories"
 
 WORDS = []
-with open("wordlists/wikipedia_list.txt") as FIN:
+with open(f_wordlist) as FIN:
     for line in FIN:
         WORDS.append(line.split('-')[0])
 

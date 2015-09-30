@@ -1,6 +1,10 @@
 import os, glob, json, codecs, time
 from src.word_fix import fix_repo
 
+# Ignore search results that have more than these number, they may
+# represent github's automatic "fixes".
+big_word_count = 500
+
 # ONLY correct these words
 filter_words = ["diablical","emblamatic",
                 "existance","indepedence","incomptetent",
@@ -13,6 +17,13 @@ filter_words = ["diablical","emblamatic",
                 'availible',
                 'avalable',
 ]
+
+# Use the parsed version
+#f_wordlist = "wordlists/wikipedia_list.txt"
+f_wordlist = "wordlists/parsed_wikipedia_list.txt"
+        
+
+FLAG_USING_FILTER = False
 
 # Total number of corrections to run in one batch
 max_total_corrections = 20**10
@@ -37,7 +48,7 @@ F_LOG = open(f_logfile,'a')
 
 # Load the wordlist
 corrections = {}
-with open("wordlists/wikipedia_list.txt") as FIN:
+with open(f_wordlist) as FIN:
     for line in FIN:
         bad, good = line.strip().split('->')
 
@@ -45,7 +56,8 @@ with open("wordlists/wikipedia_list.txt") as FIN:
         if ',' in good: continue
 
         # Skip words that aren't in clean list
-        if bad not in filter_words: continue
+        if FLAG_USING_FILTER:
+            if bad not in filter_words: continue
         corrections[bad] = good
 
 
@@ -57,16 +69,21 @@ def load_word_file(f):
 total_corrections = 0
 
 for f in F_SEARCH:
+
+    # Keep track of the "no-edits", this may mark github's autocorrect
+    no_edit_counter = 0
+    
     if total_corrections > max_total_corrections:
         break
     
     js = load_word_file(f)
+
     count = js["total_count"]
     word = f.split('/')[-1]
     
     if not count: continue
 
-    if count > 500:
+    if count > big_word_count:
         #print "BIG WORD COUNT...", f, count
         continue
 
@@ -79,7 +96,7 @@ for f in F_SEARCH:
         print "Word '{}' too short, skipping".format(word)
         continue
         
-    print "** Starting word {} ({}) **".format(word,len(js["items"]))
+    print "** Starting word {} ({}) **".format(word,count)
 
     for full_name in js["items"]:
         key = (word, full_name)
@@ -88,14 +105,20 @@ for f in F_SEARCH:
             print "{} {} already completed, skipping".format(*key)
             continue
 
-
         bad_word = word
         good_word = corrections[bad_word]
         print "Starting {} {} -> {}".format(full_name, bad_word, good_word)
-        fix_repo(full_name, good_word, bad_word)
+        pull_status = fix_repo(full_name, good_word, bad_word)
+
 
         log_item = "{} {} {}\n"
         F_LOG.write(log_item.format(word, full_name, int(time.time())))
+
+        if not pull_status:
+            no_edit_counter += 1
+        if no_edit_counter > 1:
+            break
+
 
         total_corrections += 1
 

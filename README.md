@@ -6,7 +6,7 @@ _I've been culturally insensitive and rude._
 
 The heart of this project is a user of the same name on github, [orthographic-pedant](https://github.com/orthographic-pedant).
 This user scans popular repositories for common typos and will attempt to correct them with proper pull requests.
-This bot is in it's infancy. You can guide it's development by sending it scathing ditiribes as an [issue](https://github.com/thoppe/orthographic-pedant/issues/new).
+This bot is in its infancy. You can guide it's development by sending it scathing ditiribes as an [issue](https://github.com/thoppe/orthographic-pedant/issues/new).
 
 #### Submitted logs
 
@@ -50,4 +50,8 @@ Hipster image credit: [Christopher Michel](https://flic.kr/p/fn9wCy)
 
 
 
+
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/thoppe/orthographic-pedant/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 

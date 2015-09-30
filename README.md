@@ -49,3 +49,7 @@ Hipster image credit: [Christopher Michel](https://flic.kr/p/fn9wCy)
 
 
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/thoppe/orthographic-pedant/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+

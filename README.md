@@ -24,6 +24,8 @@ This bot is in its infancy. You can guide the development by sending it scathing
 
 > @orthographic-pedant thx little bot :) [@theengineear](https://github.com/plotly/postMessage-API/pull/2)
 
+> You. You're alright. Come back anytime. [jfryman](https://github.com/StackStorm/st2workroom/pull/121)
+
 > Loving this bot, @orthographic-pedant! [@pudo](https://github.com/pudo/apikit/pull/1#issuecomment-143965254)
 
 #### The Honeypot and related work

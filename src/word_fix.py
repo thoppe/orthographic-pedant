@@ -8,7 +8,7 @@ FLAG_fork = True
 FLAG_delete = True
 
 fork_sleep_time = 10
-clone_error_sleep_time = 15
+clone_error_sleep_time = 60
 
 # Verify that there is a token set as an env variable and load it
 shell_token  = "GITHUB_ORTHOGRAPHIC_TOKEN"
@@ -94,9 +94,9 @@ def clone_repo(repo):
             logging.info(msg)
             subprocess.check_output(cmd,shell=True)
         except:
-            msg = u"Cloning repo {full_name} again".format(**repo)
+            msg = u"Cloning repo {full_name} again after sleep".format(**repo)
             logging.info(msg)
-            time.sleep(60)
+            time.sleep(clone_error_sleep_time)
             subprocess.check_output(cmd,shell=True)
             os.system(cmd)
 
@@ -237,6 +237,8 @@ def fix_repo(full_name, good_word, bad_word):
                 correction_count = fix_file(fr, bad_word, good_word)
             except UnicodeDecodeError:
                 # Skip the repo if the file is too funky for utf-8
+                msg = "UnicodeDecode Error"
+                logging.error(msg)
                 return False
             total_corrections += correction_count
         logging.info("Fixed {} spelling mistakes".format(total_corrections))

@@ -4,12 +4,9 @@ abondoned->abandoned
 abondoning->abandoning
 abreviation->abbreviation
 abritrary->arbitrary
-absolutly->absolutely
 absorbsion->absorption
 absorbtion->absorption
 abudance->abundance
-abundacies->abundances
-abundancies->abundances
 abundunt->abundant
 acadamy->academy
 acadmic->academic

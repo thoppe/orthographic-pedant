@@ -5,29 +5,22 @@ from src.word_fix import fix_repo
 # represent github's automatic "fixes".
 big_word_count = 500
 
-# ONLY correct these words
-filter_words = ["diablical","emblamatic",
-                "existance","indepedence","incomptetent",
-                "auxilary", "auxilliary",
-                'availabe',
-                'availablity',
-                'availaible',
-                'availble',
-                'availiable',
-                'availible',
-                'avalable',
-]
+# Load the blacklisted users, these users WON'T be checked.
+BLACKLIST = {}
+with open("blacklists/users.txt") as FIN:
+    BLACKLIST["users"] = set()
+    for line in FIN:
+        BLACKLIST["users"].add(line.strip())
 
 # Use the parsed version
 #f_wordlist = "wordlists/wikipedia_list.txt"
-f_wordlist = "wordlists/parsed_wikipedia_list.txt"
-        
+f_wordlist = "wordlists/parsed_wikipedia_list.txt"    
 
 FLAG_USING_FILTER = False
 
 # Total number of corrections to run in one batch
-max_total_corrections = 20**10
-#max_total_corrections = 1
+#max_total_corrections = 20**10
+max_total_corrections = 1
 
 os.system("mkdir -p logs")
 F_SEARCH = sorted(glob.glob("search_data/*"))
@@ -56,8 +49,9 @@ with open(f_wordlist) as FIN:
         if ',' in good: continue
 
         # Skip words that aren't in clean list
-        if FLAG_USING_FILTER:
-            if bad not in filter_words: continue
+        #if FLAG_USING_FILTER:
+        #    if bad not in filter_words: continue
+        
         corrections[bad] = good
 
 
@@ -101,6 +95,12 @@ for f in F_SEARCH:
     for full_name in js["items"]:
         key = (word, full_name)
 
+        user_name, repo_name = full_name.split('/')
+        if user_name in BLACKLIST["users"]:
+            msg = "Skipping {}. User on the blacklist.".format(user_name)
+            logging.warning(msg)
+            continue
+
         if key in LOGS:
             print "{} {} already completed, skipping".format(*key)
             continue
@@ -118,7 +118,6 @@ for f in F_SEARCH:
             no_edit_counter += 1
         if no_edit_counter > 1:
             break
-
 
         total_corrections += 1
 

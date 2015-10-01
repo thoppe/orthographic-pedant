@@ -206,8 +206,6 @@ attemt->attempt
 attemted->attempted
 attemting->attempting
 attendence->attendance
-attendent->attendant
-attendents->attendants
 attributred->attributed
 attrocities->atrocities
 audeince->audience

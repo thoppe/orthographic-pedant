@@ -16,6 +16,8 @@ This bot is in its infancy. You can guide the development by sending it scathing
 
 >  Your bot is a d-bag. [@peanav](https://github.com/peanav/LESS-Presentation/pull/1)
 
+> @orthographic-pedant you bring light to dark places. :bulb: [jambun](https://github.com/hudmol/archivesspace/pull/786#issuecomment-144568493)
+
 > As much as I enjoy the view from linguistic squalor, I feel obliged to visit pedantry avenue occasionally. [@reggieb](https://github.com/reggieb/indulgence/pull/2)
 
 > You, sir, are a gentleman and a scholar. [@RichardLitt](https://github.com/k88hudson/git-flight-rules/pull/91#issuecomment-144483181)

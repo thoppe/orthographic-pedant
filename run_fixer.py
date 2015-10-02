@@ -85,7 +85,6 @@ for f in F_SEARCH:
         #print "Word {} not in corrections, skipping".format(word)
         continue
             
-    
     if len(word) <= 3:
         print "Word '{}' too short, skipping".format(word)
         continue

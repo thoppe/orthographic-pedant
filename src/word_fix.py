@@ -22,16 +22,8 @@ delete_url = API_URL + "/{user_name}/{repo_name}"
 push_url   = "https://{bot_name}:{bot_password}@github.com/{bot_name}/{repo_name} {branch_name}:{branch_name}"
 clone_url  = "https://github.com/orthographic-pedant/{repo_name}"
 
-
-pull_request_msg = ' '.join('''
-  @{user_name}, I've corrected a typographical error in the documentation of the 
-  [{repo_name}](https://github.com/{user_name}/{repo_name})
-  project. You should be able to merge this pull request automatically. 
-  However, if this was intentional or if you enjoy living in 
-  linguistic squalor, please let me know and 
-  [create an issue](https://github.com/thoppe/orthographic-pedant/issues/new)
-  on my home repository.
-'''.split())
+with open("PR_message.txt") as FIN:
+    pull_request_msg = ' '.join(FIN.read().split())
 
 def is_branch_different_from_default(repo):
     # Checks if any substantial commits have been made

@@ -1,20 +1,19 @@
 # Orthographic Pedant
 _A repository that tries to feel superior by correcting your mistakes._
-_I've been culturally insensitive and rude._
+_I've been culturally insensitive and rude.
   
 <p align="center"><img src="https://raw.githubusercontent.com/thoppe/orthographic-pedant/master/images/hipster.jpg?raw=true" alt=""/></p>
 
 The heart of this project is a user of the same name on github, [orthographic-pedant](https://github.com/orthographic-pedant).
 This user scans popular repositories for common typos and will attempt to correct them with proper pull requests.
 This bot is in its infancy. You can guide the development by sending it scathing diatribes as an [issue](https://github.com/thoppe/orthographic-pedant/issues/new).
+Every pull request that is commented on will receive a lovingly hand-crafted response from a human if required. This places @orthographic-pedant firmly in the semi-automated category.
 
 #### Submitted logs
 
 [List of submitted corrections](logs/submitted.log)
 
 #### User reviews and mentions:
-
->  Your bot is a d-bag. [@peanav](https://github.com/peanav/LESS-Presentation/pull/1)
 
 > @orthographic-pedant you bring light to dark places. :bulb: [@jambun](https://github.com/hudmol/archivesspace/pull/786#issuecomment-144568493)
 
@@ -29,6 +28,8 @@ This bot is in its infancy. You can guide the development by sending it scathing
 > You. You're alright. Come back anytime. [@jfryman](https://github.com/StackStorm/st2workroom/pull/121)
 
 > Loving this bot, @orthographic-pedant! [@pudo](https://github.com/pudo/apikit/pull/1#issuecomment-143965254)
+
+>  Your bot is a d-bag. [@peanav](https://github.com/peanav/LESS-Presentation/pull/1)
 
 #### The Honeypot and related work
 

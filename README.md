@@ -1,6 +1,6 @@
 # Orthographic Pedant
 _A repository that tries to feel superior by correcting your mistakes._
-_I've been culturally insensitive and rude.
+_I'm sometimes culturally insensitive and rude. Sorry._
   
 <p align="center"><img src="https://raw.githubusercontent.com/thoppe/orthographic-pedant/master/images/hipster.jpg?raw=true" alt=""/></p>
 
@@ -55,11 +55,3 @@ Wikipedia's list of common misspellings:
 #### Image Credit:
 
 Hipster image credit: [Christopher Michel](https://flic.kr/p/fn9wCy)
-
-
-
-
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/thoppe/orthographic-pedant/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-

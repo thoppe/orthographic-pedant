@@ -16,7 +16,9 @@ This bot is in its infancy. You can guide the development by sending it scathing
 
 >  Your bot is a d-bag. [@peanav](https://github.com/peanav/LESS-Presentation/pull/1)
 
-> @orthographic-pedant you bring light to dark places. :bulb: [jambun](https://github.com/hudmol/archivesspace/pull/786#issuecomment-144568493)
+> @orthographic-pedant you bring light to dark places. :bulb: [@jambun](https://github.com/hudmol/archivesspace/pull/786#issuecomment-144568493)
+
+> This excites me more than it should. [@Kainzo](https://github.com/MilkBowl/Vault/pull/632#issuecomment-144826246)
 
 > As much as I enjoy the view from linguistic squalor, I feel obliged to visit pedantry avenue occasionally. [@reggieb](https://github.com/reggieb/indulgence/pull/2)
 
@@ -24,7 +26,7 @@ This bot is in its infancy. You can guide the development by sending it scathing
 
 > @orthographic-pedant thx little bot :) [@theengineear](https://github.com/plotly/postMessage-API/pull/2)
 
-> You. You're alright. Come back anytime. [jfryman](https://github.com/StackStorm/st2workroom/pull/121)
+> You. You're alright. Come back anytime. [@jfryman](https://github.com/StackStorm/st2workroom/pull/121)
 
 > Loving this bot, @orthographic-pedant! [@pudo](https://github.com/pudo/apikit/pull/1#issuecomment-143965254)
 

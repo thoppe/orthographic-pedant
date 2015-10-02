@@ -7,7 +7,8 @@ _I've been culturally insensitive and rude.
 The heart of this project is a user of the same name on github, [orthographic-pedant](https://github.com/orthographic-pedant).
 This user scans popular repositories for common typos and will attempt to correct them with proper pull requests.
 This bot is in its infancy. You can guide the development by sending it scathing diatribes as an [issue](https://github.com/thoppe/orthographic-pedant/issues/new).
-Every pull request that is commented on will receive a lovingly hand-crafted response from a human if required. This places @orthographic-pedant firmly in the semi-automated category.
+If warranted, every pull request commented on will receive a lovingly hand-crafted response (from a human).
+This places @orthographic-pedant firmly in the semi-automated category.
 
 #### Submitted logs
 

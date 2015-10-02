@@ -1,0 +1,1 @@
+Changed {bad_word} to {good_word} in README.

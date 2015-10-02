@@ -22,8 +22,15 @@ delete_url = API_URL + "/{user_name}/{repo_name}"
 push_url   = "https://{bot_name}:{bot_password}@github.com/{bot_name}/{repo_name} {branch_name}:{branch_name}"
 clone_url  = "https://github.com/orthographic-pedant/{repo_name}"
 
-with open("PR_message.txt") as FIN:
+# Load the PR text 
+with open("messages/pull_request.txt") as FIN:
     pull_request_msg = ' '.join(FIN.read().split())
+
+with open("messages/commit_header.txt") as FIN:
+    commit_header_msg = FIN.read().strip()
+
+with open("messages/commit_text.txt") as FIN:
+    commit_text_msg = FIN.read().strip()
 
 def is_branch_different_from_default(repo):
     # Checks if any substantial commits have been made
@@ -46,7 +53,7 @@ def pull_request_repo(repo):
     data = {
         "head"  :"{bot_name}:{branch_name}".format(**repo),
         "base"  : repo["master_branch"],
-        "title" : repo["fix_msg"],
+        "title" : repo["commit_header"],
         "body"  : pull_request_msg.format(**repo),
     }
 
@@ -202,6 +209,8 @@ def fix_repo(full_name, good_word, bad_word):
         "access_token" : GITHUB_TOKEN,
         "user_name" : user_name,
         "repo_name" : repo_name,
+        "good_word" : good_word,
+        "bad_word"  : bad_word,
     }
 
     # Check if the user_name is a "bad_word", this is a false positive!
@@ -236,9 +245,9 @@ def fix_repo(full_name, good_word, bad_word):
         logging.info("Fixed {} spelling mistakes".format(total_corrections))
 
         # Commit changes
-        repo["fix_msg"] = 'Fixed typographical error, changed {} to {} in README.'
-        repo["fix_msg"] = repo["fix_msg"].format(bad_word, good_word)
-        cmd = 'git commit -a -m "{fix_msg}"'.format(**repo)
+        repo["commit_header"] = commit_header_msg.format(**repo)
+        repo["commit_text"]   = commit_text_msg.format(**repo)
+        cmd = 'git commit -a -m "{commit_header}" -m "{commit_text}"'.format(**repo)
         os.system(cmd)
 
         # Push the changes to bot directory

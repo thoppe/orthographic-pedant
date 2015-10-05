@@ -8,9 +8,9 @@ Any PR (pull requests) made by @orthographic-pedant are hereby released into the
 
 ## Data Files
 
-The data file [wordlists/wikipedia_list.txt](wordlists/wikipedia_list.txt) is licensed under Attribution-ShareAlike 3.0 United States.
+The data file [wordlists/wikipedia_list.txt](wordlists/wikipedia_list.txt) is licensed under Attribution-ShareAlike 3.0 Unported.
 
-This is a human-readable summary, the full license can be found [here](https://creativecommons.org/licenses/by-sa/3.0/us/legalcode).
+This is a human-readable summary, the full license can be found [here](https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License).
 
 1. Share - copy and redistribute the material in any medium or format
 2. Adapt - remix, transform, and build upon the material for any purpose, even commercially.

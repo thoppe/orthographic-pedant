@@ -19,8 +19,8 @@ f_wordlist = "wordlists/parsed_wikipedia_list.txt"
 FLAG_USING_FILTER = False
 
 # Total number of corrections to run in one batch
-#max_total_corrections = 20**10
-max_total_corrections = 1
+max_total_corrections = 20**10
+#max_total_corrections = 1
 
 os.system("mkdir -p logs")
 F_SEARCH = sorted(glob.glob("search_data/*"))
@@ -97,7 +97,7 @@ for f in F_SEARCH:
         user_name, repo_name = full_name.split('/')
         if user_name in BLACKLIST["users"]:
             msg = "Skipping {}. User on the blacklist.".format(user_name)
-            logging.warning(msg)
+            print msg
             continue
 
         if key in LOGS:

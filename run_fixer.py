@@ -75,7 +75,8 @@ for f in F_SEARCH:
     count = js["total_count"]
     word = f.split('/')[-1]
     
-    if not count: continue
+    if not count:
+        continue
 
     if count > big_word_count:
         #print "BIG WORD COUNT...", f, count
@@ -102,6 +103,10 @@ for f in F_SEARCH:
 
         if key in LOGS:
             print "{} {} already completed, skipping".format(*key)
+            continue
+
+        # Simple check for other spelling bots
+        if "spell" in repo_name.lower():
             continue
 
         bad_word = word

@@ -347,7 +347,6 @@ clinicaly->clinically
 cognizent->cognizant
 coincedentally->coincidentally
 colaborations->collaborations
-colateral->collateral
 collaberative->collaborative
 collecton->collection
 collony->colony

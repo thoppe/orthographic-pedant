@@ -30,6 +30,8 @@ This places @orthographic-pedant firmly in the semi-automated category.
 
 > Loving this bot, @orthographic-pedant! [@pudo](https://github.com/pudo/apikit/pull/1#issuecomment-143965254)
 
+> This is... wonderful. [@p0pr0ck5](https://github.com/p0pr0ck5/FreeWAF/pull/71#event-429401497)
+
 >  Your bot is a d-bag. [@peanav](https://github.com/peanav/LESS-Presentation/pull/1)
 
 #### The Honeypot and related work

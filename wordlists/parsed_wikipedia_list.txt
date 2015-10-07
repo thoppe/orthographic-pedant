@@ -324,12 +324,10 @@ cerimonious->ceremonious
 cerimony->ceremony
 ceromony->ceremony
 certian->certain
-
 chalenging->challenging
 challange->challenge
 challanged->challenged
 challege->challenge
-changable->changeable
 charachter->character
 charachters->characters
 charactersistic->characteristic
@@ -374,11 +372,8 @@ compability->compatibility
 comparision->comparison
 comparisions->comparisons
 comparitive->comparative
-compatable->compatible
 compatablity->compatibility
 compatiable->compatible
-compatiblities->compatibilities
-compatiblity->compatibility
 competance->competence
 competative->competitive
 competitiion->competition
@@ -442,12 +437,6 @@ contigent->contingent
 continential->continental
 continous->continuous
 continously->continuously
-continueing->continuing
-contributer->contributor
-contributers->contributors
-contritutions->contributions
-controled->controlled
-controling->controlling
 controvercial->controversial
 controvercy->controversy
 controveries->controversies

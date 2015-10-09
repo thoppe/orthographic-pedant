@@ -26,8 +26,8 @@ f_wordlist = "wordlists/parsed_wikipedia_list.txt"
 FLAG_USING_FILTER = False
 
 # Total number of corrections to run in one batch
-#max_total_corrections = 20**10
-max_total_corrections = 1
+max_total_corrections = 20**10
+#max_total_corrections = 1
 
 os.system("mkdir -p logs")
 F_SEARCH = sorted(glob.glob("search_data/*"))

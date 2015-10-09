@@ -46,6 +46,11 @@ It is known that there is at least one such bot in action:
 
 + [@TheTypoMaster](https://github.com/TheTypoMaster).  
 
+
+#### Wishlist:
+
++ "Request @orthographic-pedant to go over some repositories, or through all of an organization's repositories?" [@RichardLitt](https://github.com/thoppe/orthographic-pedant/issues/26)
+
 #### Notes:
 
 [Search](https://github.com/search?utf8=%E2%9C%93&q=fork%3Afalse+in%3Afile+abudance+filename%3Areadme&type=Code&ref=searchresults) query for `abudance`, no forks and filename `README`:

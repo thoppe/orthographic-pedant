@@ -12,6 +12,14 @@ with open("blacklists/users.txt") as FIN:
     for line in FIN:
         BLACKLIST["users"].add(line.strip())
 
+# Load the submissions, for now everybody only gets one!
+with open("logs/submitted.log") as FIN:
+    BLACKLIST["submitted"] = set()
+    for line in FIN:
+        word, name, time = line.split()
+        BLACKLIST["submitted"].add(name)
+
+
 # Use the parsed version
 #f_wordlist = "wordlists/wikipedia_list.txt"
 f_wordlist = "wordlists/parsed_wikipedia_list.txt"    
@@ -96,13 +104,19 @@ for f in F_SEARCH:
         key = (word, full_name)
 
         user_name, repo_name = full_name.split('/')
+
         if user_name in BLACKLIST["users"]:
-            msg = "Skipping {}. User on the blacklist.".format(user_name)
-            print msg
+            msg = "Skipping {}. User on the blacklist."
+            print msg.format(user_name)
             continue
 
         if key in LOGS:
             print "{} {} already completed, skipping".format(*key)
+            continue
+
+        if full_name in BLACKLIST["submitted"]:
+            msg = "Skipping {}. User/repo already submitted."
+            print msg.format(full_name)
             continue
 
         # Simple check for other spelling bots
@@ -111,16 +125,23 @@ for f in F_SEARCH:
 
         bad_word = word
         good_word = corrections[bad_word]
-        print "Starting {} {} -> {}".format(full_name, bad_word, good_word)
-        pull_status = fix_repo(full_name, good_word, bad_word)
 
+        # This case would be an intentional "typo"
+        if bad_word in repo_name or bad_word in user_name:
+            continue
+        
+        print "Starting {} {} -> {}".format(full_name, bad_word, good_word)
+        exit()
+        
+        pull_status = fix_repo(full_name, good_word, bad_word)
 
         log_item = "{} {} {}\n"
         F_LOG.write(log_item.format(word, full_name, int(time.time())))
 
         if not pull_status:
             no_edit_counter += 1
-        if no_edit_counter > 1:
+            
+        if no_edit_counter >= 1:
             break
 
         total_corrections += 1

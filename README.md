@@ -14,6 +14,8 @@ This places @orthographic-pedant firmly in the semi-automated category.
 
 [List of submitted corrections](logs/submitted.log)
 
+[Active Pull Requests](https://github.com/pulls?utf8=%E2%9C%93&q=is%3Apr+author%3Aorthographic-pedant+) (must be signed in)
+
 #### User reviews and mentions:
 
 > @orthographic-pedant you bring light to dark places. :bulb: [@jambun](https://github.com/hudmol/archivesspace/pull/786#issuecomment-144568493)

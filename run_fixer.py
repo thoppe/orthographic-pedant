@@ -16,9 +16,8 @@ with open("blacklists/users.txt") as FIN:
 with open("logs/submitted.log") as FIN:
     BLACKLIST["submitted"] = set()
     for line in FIN:
-        word, name, time = line.split()
+        word, name, submit_time = line.split()
         BLACKLIST["submitted"].add(name)
-
 
 # Use the parsed version
 #f_wordlist = "wordlists/wikipedia_list.txt"
@@ -27,8 +26,8 @@ f_wordlist = "wordlists/parsed_wikipedia_list.txt"
 FLAG_USING_FILTER = False
 
 # Total number of corrections to run in one batch
-max_total_corrections = 20**10
-#max_total_corrections = 1
+#max_total_corrections = 20**10
+max_total_corrections = 1
 
 os.system("mkdir -p logs")
 F_SEARCH = sorted(glob.glob("search_data/*"))
@@ -131,7 +130,6 @@ for f in F_SEARCH:
             continue
         
         print "Starting {} {} -> {}".format(full_name, bad_word, good_word)
-        exit()
         
         pull_status = fix_repo(full_name, good_word, bad_word)
 

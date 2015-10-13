@@ -41,9 +41,9 @@ The project currently has 100 github stars...
 ## typographical errors!
 
 ### [Google](https://github.com/google/upb/pull/39), [Yahoo](https://github.com/yahoo/YMCache/pull/12), [Facebook](https://github.com/facebook/fbpush/pull/1),
-### [Uber](https://github.com/uber/logtron/pull/39), [Netflix](https://github.com/Netflix/inviso/pull/10),
+### [Uber](https://github.com/uber/logtron/pull/39), [Netflix](https://github.com/Netflix/inviso/pull/10), [AWS](https://github.com/awslabs/aws-lambda-redshift-loader/pull/54),
 ### [Cloud Foundry](https://github.com/cloudfoundry-samples/github-service-broker-ruby/pull/12), [Flipboard](https://github.com/Flipboard/FLEX/pull/81), 
-### SalesForce, [eBay](https://github.com/eBay/restcommander/pull/14), [Elastic Search](https://github.com/elastic/puppet-elasticsearch/pull/460), ...
+### [heroku](https://github.com/heroku/mobile-template1/pull/23), [eBay](https://github.com/eBay/restcommander/pull/14), [Elastic Search](https://github.com/elastic/puppet-elasticsearch/pull/460), ...
 
 =====
 
@@ -69,15 +69,15 @@ Your bot is a d-bag. [@peanav](https://github.com/peanav/LESS-Presentation/pull/
 
 ## Lessons learned
 
-It's easy to get 100 stars in github if you work on _other_ people's projects
+It's easy to get 100 stars in github if you work on _other_ people's projects.
 
-Start with a white-list not a general spell-checker!
+Start with a white-list, not a general spell-checker.
 
-Language is hard, ex. French `attendent` vs `attendant`
+Language is hard, ex. French `attendent` vs `attendant`.
 
-Don't be Eurocentric "d-bag", `Caesar` vs `Ceasar`
+Don't be Eurocentric "d-bag", `Caesar` vs `Ceasar`.
 
-Build a [honeypot](https://github.com/orthographic-pedant/honeypot) and they will come!
+Build a [honeypot](https://github.com/orthographic-pedant/honeypot) and they will come.
 
 I've only made it through the C's...
 

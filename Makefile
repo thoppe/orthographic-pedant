@@ -1,7 +1,7 @@
 title  = "Orthographic Pedant"
 author = "Travis Hoppe"
-target = "HnT_ortho-ped.md"
-html_target = "HnT_ortho-ped.html"
+target = "HnT_orthographic_pedant.md"
+html_target = "HnT_index.html"
 
 python_exec    = python
 md2reveal_exec = md2reveal/md2reveal.py

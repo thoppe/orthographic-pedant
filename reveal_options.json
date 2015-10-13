@@ -1,0 +1,12 @@
+{
+    "theme":"night.css",
+    "height": 900, 
+    "history": "true", 
+    "margin": 0.05, 
+    "maxScale": 1.2, 
+    "minScale": 0.2, 
+    "width": 1200,
+    "mouseWheel":"true",
+    "slideNumber": "true",
+    "controls": "false"
+}

@@ -10,7 +10,7 @@ This project is in its infancy. You can guide the development by sending it scat
 If warranted, every pull request commented on will receive a lovingly hand-crafted response (from a human).
 This places @orthographic-pedant firmly in the semi-automated category.
 
-**Update:** [I'm dead](messages/dead_msg.txt).
+**Update:** [I'm dead](messages/dead_msg.md).
 
 #### Submitted logs
 

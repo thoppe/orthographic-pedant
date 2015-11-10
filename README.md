@@ -44,6 +44,10 @@ To catch any other spell-checker bots on Github, the following repository is a h
   
 [https://github.com/orthographic-pedant/honeypot](https://github.com/orthographic-pedant/honeypot)
 
+There is one known instance of a similar bot. Like this project, its life was short-lived and is only remembered by a shallow grave dug with a 404.
+
+[@TheTypoMaster](https://github.com/TheTypoMaster).  
+
 #### Wishlist:
 
 + "Request @orthographic-pedant to go over some repositories, or through all of an organization's repositories?" [@RichardLitt](https://github.com/thoppe/orthographic-pedant/issues/26)
